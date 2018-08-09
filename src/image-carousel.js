@@ -59,9 +59,15 @@ class ImageCarousel extends PolymerElement {
 
 
         <button id="prevBtn" on-click="previous">&#x276E;</button>
-        <button id="nextBtn" on-click="nextImage">&#x276F;</button>
+        <button id="nextBtn" on-click="next">&#x276F;</button>
 
     `
+  }
+  
+  constructor () {
+    super();
+    this._interval = null;
+    this._boundNext = this.next.bind(this);
   }
   
   connectedCallback () {
@@ -69,7 +75,15 @@ class ImageCarousel extends PolymerElement {
     
     this._resetSelected();
     this.shadowRoot.addEventListener('slotchange', this._resetSelected.bind(this));
-
+    this._interval = setInterval(this._boundNext, 1000);
+  }
+  
+  disconnectedCallback () {
+    if (super.disconnectedCallback) super.disconnectedCallback();
+    if (this._interval) {
+      clearInterval(this._interval);
+      this._interval = null;
+    }
   }
   
   _selectedChanged (selected, oldSelected) {
@@ -87,13 +101,17 @@ class ImageCarousel extends PolymerElement {
     const elem = this.selected && this.selected.previousElementSibling;
     if (elem) {
       this.selected = elem;
+    } else {
+      this.selected = this.lastElementChild;
     }
   }
 
-  nextImage () {
+  next () {
     const elem = this.selected && this.selected.nextElementSibling;
     if (elem) {
       this.selected = elem;
+    } else {
+      this.selected = this.firstElementChild;
     }
   }
   
