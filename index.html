@@ -4,27 +4,52 @@
       Hello World!
     </title>
     <style>
-      span {
-        color: red;
+      img {
+        width: 100%;
       }
+      
+      .card {
+        width: 100%;
+        padding: 20px;
+        text-align: center;
+        font-size: 3rem;
+        
+      }
+      
+      .green {
+        background: green
+      }
+      
+      .red {
+        background: red
+      }
+      
+      .blue {
+        background: blue
+      }
+      
     </style>
   </head>
   <body>
-    <form id="form">
-      <label for="variableone">Name</label>
-      <input name="variableone">
-      
-      <button>
-        Submit
-      </button>
-    </form>
-    <hello-world id="hello">
-      <span>
-        World!
-      </span>
-    </hello-world>
+    <image-carousel>
+      <img src="https://assets.explora.ph/images-dev/province-carousel/1494496020_albay-1.jpg">
+      <img src="https://1.bp.blogspot.com/-RR9EU3CjSG0/WC7rzPiWlsI/AAAAAAAAMa4/5-B0QTSiTgwva1aFRStj3NI2JvGAwobiQCLcB/s640/CelineismAlbay1.jpg">
+      <img src="https://www.manilatimes.net/wp-content/uploads/2016/07/albay20160731.jpg">
+    </image-carousel>
+    
+    <image-carousel>
+      <div class="card green">
+        1
+      </div>
+      <div class="card blue">
+        2
+      </div>
+      <div class="card red">
+        3
+      </div>
+    </image-carousel>
     <script 
-      src="/src/main.js" 
+      src="/src/image-carousel.js" 
       type="module">
     </script>
   </body>
