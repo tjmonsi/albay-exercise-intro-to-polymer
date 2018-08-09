@@ -1,3 +1,11 @@
+const form = document.querySelector('#form');
+const helloWorld = document.querySelector('hello-world');
+form.addEventListener('submit', e => {
+  const { target } = e;
+  e.preventDefault();
+  helloWorld.name = target.name.value;
+});
+
 class HelloWorld extends HTMLElement {
   constructor () {
     super();
